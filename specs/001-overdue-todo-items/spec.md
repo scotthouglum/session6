@@ -8,6 +8,14 @@
 
 **Input**: User description: "As a todo application user, I want to easily identify and distinguish overdue tasks in my todo list, so that I can prioritize my work and quickly see which tasks are past their due date. Users need a clear, visual way to identify which todos have not been completed by their due date, without having to manually check dates against today's date."
 
+## Clarifications
+
+### Session 2026-08-11
+
+- Q: What visual treatment should mark a todo as overdue in the list? → A: Color + text badge/label (e.g., an "Overdue" badge near the due date)
+- Q: Where and how should the overdue count from Story 3 be displayed? → A: A standalone summary line above the todo list (e.g., "3 todos overdue")
+- Q: Should the overdue count summary line be hidden when there are zero overdue todos, or always shown (including "0 todos overdue")? → A: Always shown, including "0 todos overdue" when none are overdue
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Identify overdue todos at a glance (Priority: P1)
@@ -74,8 +82,9 @@ As a user, I want to see a count of how many todos are currently overdue, so I c
 - **FR-004**: System MUST NOT mark a todo due today or in the future as overdue.
 - **FR-005**: System MUST update a todo's overdue indicator immediately (without requiring a page refresh) when the todo's completion status changes.
 - **FR-006**: System MUST update a todo's overdue indicator immediately (without requiring a page refresh) when the todo's due date is changed.
-- **FR-007**: System MUST display a count of currently overdue todos, updated immediately as todos change status or due date.
+- **FR-007**: System MUST display a count of currently overdue todos, updated immediately as todos change status or due date, shown as a standalone summary line above the todo list (e.g., "3 todos overdue"). The line MUST always be shown, including "0 todos overdue" when there are none.
 - **FR-008**: The overdue indicator MUST be visually distinguishable from the existing completion status indicator (i.e., a user can tell overdue and completed apart at a glance).
+- **FR-009**: The overdue indicator MUST combine a distinct color with a text badge/label (e.g., "Overdue") displayed near the due date, so status is conveyed without relying on color alone.
 
 ### Key Entities
 
