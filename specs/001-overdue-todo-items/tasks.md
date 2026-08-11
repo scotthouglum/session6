@@ -30,7 +30,7 @@ feature only touches `packages/frontend/src/`.
 
 **Purpose**: Establish a clean baseline before making changes
 
-- [ ] T001 Run `npm test --workspace=packages/frontend -- --watchAll=false` and confirm the existing suite is green, establishing a clean baseline before adding overdue-related changes
+- [X] T001 Run `npm test --workspace=packages/frontend -- --watchAll=false` and confirm the existing suite is green, establishing a clean baseline before adding overdue-related changes
 
 ---
 
@@ -40,9 +40,9 @@ feature only touches `packages/frontend/src/`.
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T002 [P] Add an `--overdue-color` CSS custom property to both the light (`:root`) and dark (`[data-theme="dark"]`) blocks in packages/frontend/src/styles/theme.css, chosen so it is visually distinct from `--danger-color` and `--success-color` and meets WCAG AA contrast against `--bg-surface` in both modes (per research.md)
-- [ ] T003 [P] Write failing unit tests for `isOverdue(todo, today)` and `getOverdueCount(todos, today)` covering past/today/future/no-due-date/completed cases in packages/frontend/src/utils/__tests__/overdue.test.js (per contracts/overdue-utils.md)
-- [ ] T004 Implement `isOverdue(todo, today)` and `getOverdueCount(todos, today)` in packages/frontend/src/utils/overdue.js so the tests from T003 pass (depends on T003)
+- [X] T002 [P] Add an `--overdue-color` CSS custom property to both the light (`:root`) and dark (`[data-theme="dark"]`) blocks in packages/frontend/src/styles/theme.css, chosen so it is visually distinct from `--danger-color` and `--success-color` and meets WCAG AA contrast against `--bg-surface` in both modes (per research.md)
+- [X] T003 [P] Write failing unit tests for `isOverdue(todo, today)` and `getOverdueCount(todos, today)` covering past/today/future/no-due-date/completed cases in packages/frontend/src/utils/__tests__/overdue.test.js (per contracts/overdue-utils.md)
+- [X] T004 Implement `isOverdue(todo, today)` and `getOverdueCount(todos, today)` in packages/frontend/src/utils/overdue.js so the tests from T003 pass (depends on T003)
 
 **Checkpoint**: Foundation ready — tested overdue utility and color token are available; user story implementation can now begin.
 
@@ -58,12 +58,12 @@ feature only touches `packages/frontend/src/`.
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T005 [P] [US1] Add tests to packages/frontend/src/components/__tests__/TodoCard.test.js asserting the "Overdue" badge renders only when the todo is incomplete with a past due date, and is absent for todos due today, due in the future, with no due date, or completed
+- [X] T005 [P] [US1] Add tests to packages/frontend/src/components/__tests__/TodoCard.test.js asserting the "Overdue" badge renders only when the todo is incomplete with a past due date, and is absent for todos due today, due in the future, with no due date, or completed
 
 ### Implementation for User Story 1
 
-- [ ] T006 [US1] In packages/frontend/src/components/TodoCard.js, import `isOverdue` from ../utils/overdue and render an "Overdue" text badge next to the due date when `isOverdue(todo)` is true (depends on T004, T005)
-- [ ] T007 [US1] Add `.overdue-badge` styles using the `--overdue-color` token (light & dark) in packages/frontend/src/App.css (depends on T002)
+- [X] T006 [US1] In packages/frontend/src/components/TodoCard.js, import `isOverdue` from ../utils/overdue and render an "Overdue" text badge next to the due date when `isOverdue(todo)` is true (depends on T004, T005)
+- [X] T007 [US1] Add `.overdue-badge` styles using the `--overdue-color` token (light & dark) in packages/frontend/src/App.css (depends on T002)
 
 **Checkpoint**: User Story 1 is fully functional and testable independently — the core visual signal works end-to-end.
 
@@ -79,11 +79,11 @@ feature only touches `packages/frontend/src/`.
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T008 [P] [US2] Add tests to packages/frontend/src/components/__tests__/TodoCard.test.js (re-render with updated `todo` prop) and packages/frontend/src/__tests__/App.test.js (toggle/edit through the UI) asserting the "Overdue" badge appears/disappears immediately after completion or due-date changes, without any additional refresh action
+- [X] T008 [P] [US2] Add tests to packages/frontend/src/components/__tests__/TodoCard.test.js (re-render with updated `todo` prop) and packages/frontend/src/__tests__/App.test.js (toggle/edit through the UI) asserting the "Overdue" badge appears/disappears immediately after completion or due-date changes, without any additional refresh action
 
 ### Implementation for User Story 2
 
-- [ ] T009 [US2] Verify and, if needed, adjust state handling in packages/frontend/src/App.js and packages/frontend/src/components/TodoCard.js so `onToggle`/`onEdit` results flow directly into re-rendered `todo` props with no stale caching of overdue status (depends on T006, T008)
+- [X] T009 [US2] Verify and, if needed, adjust state handling in packages/frontend/src/App.js and packages/frontend/src/components/TodoCard.js so `onToggle`/`onEdit` results flow directly into re-rendered `todo` props with no stale caching of overdue status (depends on T006, T008)
 
 **Checkpoint**: User Stories 1 and 2 both work independently — the badge is accurate and always up to date.
 
@@ -99,12 +99,12 @@ feature only touches `packages/frontend/src/`.
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T010 [P] [US3] Add tests to packages/frontend/src/__tests__/App.test.js asserting the overdue summary line renders the correct count for a mix of overdue/non-overdue/completed todos, updates immediately after toggle/edit, and always renders (including "0 todos overdue" with no overdue items)
+- [X] T010 [P] [US3] Add tests to packages/frontend/src/__tests__/App.test.js asserting the overdue summary line renders the correct count for a mix of overdue/non-overdue/completed todos, updates immediately after toggle/edit, and always renders (including "0 todos overdue" with no overdue items)
 
 ### Implementation for User Story 3
 
-- [ ] T011 [US3] In packages/frontend/src/App.js, import `getOverdueCount` from ./utils/overdue and render an always-visible summary line (e.g., "3 todos overdue" / "0 todos overdue") above `TodoList` (depends on T004, T010)
-- [ ] T012 [P] [US3] Add `.overdue-summary` styling in packages/frontend/src/App.css
+- [X] T011 [US3] In packages/frontend/src/App.js, import `getOverdueCount` from ./utils/overdue and render an always-visible summary line (e.g., "3 todos overdue" / "0 todos overdue") above `TodoList` (depends on T004, T010)
+- [X] T012 [P] [US3] Add `.overdue-summary` styling in packages/frontend/src/App.css
 
 **Checkpoint**: All three user stories are independently functional and testable.
 
@@ -114,10 +114,10 @@ feature only touches `packages/frontend/src/`.
 
 **Purpose**: Final validation across all stories
 
-- [ ] T013 [P] Manually verify `--overdue-color` meets WCAG AA contrast against `--bg-surface` in both light and dark themes (constitution Principle V), adjusting the token in packages/frontend/src/styles/theme.css if needed
-- [ ] T014 [P] Run `npm test --workspace=packages/frontend -- --watchAll=false` and confirm coverage remains at or above the project's 80% target (testing-guidelines.md)
-- [ ] T015 Run the manual validation scenarios in [quickstart.md](./quickstart.md) end-to-end against the running app
-- [ ] T016 Run `npm test --workspace=packages/backend` and confirm the existing backend suite is still green (no regressions expected, since this feature is frontend-only)
+- [X] T013 [P] Manually verify `--overdue-color` meets WCAG AA contrast against `--bg-surface` in both light and dark themes (constitution Principle V), adjusting the token in packages/frontend/src/styles/theme.css if needed
+- [X] T014 [P] Run `npm test --workspace=packages/frontend -- --watchAll=false` and confirm coverage remains at or above the project's 80% target (testing-guidelines.md)
+- [X] T015 Run the manual validation scenarios in [quickstart.md](./quickstart.md) end-to-end against the running app
+- [X] T016 Run `npm test --workspace=packages/backend` and confirm the existing backend suite is still green (no regressions expected, since this feature is frontend-only)
 
 ---
 

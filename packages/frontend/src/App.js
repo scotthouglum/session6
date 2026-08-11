@@ -4,6 +4,7 @@ import TodoList from './components/TodoList';
 import ThemeToggle from './components/ThemeToggle';
 import ConfirmDialog from './components/ConfirmDialog';
 import TodoService from './services/todoService';
+import { getOverdueCount } from './utils/overdue';
 import './App.css';
 
 function App() {
@@ -145,13 +146,18 @@ function App() {
           )}
 
           {!loading && (
-            <TodoList
-              todos={todos}
-              onToggle={handleToggleTodo}
-              onEdit={handleEditTodo}
-              onDelete={handleDeleteTodo}
-              isLoading={isDeleting}
-            />
+            <>
+              <p className="overdue-summary">
+                {getOverdueCount(todos)} todos overdue
+              </p>
+              <TodoList
+                todos={todos}
+                onToggle={handleToggleTodo}
+                onEdit={handleEditTodo}
+                onDelete={handleDeleteTodo}
+                isLoading={isDeleting}
+              />
+            </>
           )}
         </div>
       </main>
