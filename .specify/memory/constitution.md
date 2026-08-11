@@ -1,50 +1,101 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report
+- Version change: template baseline -> 1.0.0
+- Modified principles:
+	- Template Principle 1 -> I. User Value and Scope Discipline
+	- Template Principle 2 -> II. Simplicity and Single Responsibility
+	- Template Principle 3 -> III. Test-First Quality Gate (NON-NEGOTIABLE)
+	- Template Principle 4 -> IV. Immediate Persistence and Data Integrity
+	- Template Principle 5 -> V. Accessible Themed UI Consistency
+- Added sections:
+	- Technical Standards and Constraints
+	- Development Workflow and Review Gates
+- Removed sections:
+	- None
+- Follow-up TODOs:
+	- None
+-->
+
+# Session6 Todo App Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. User Value and Scope Discipline
+All work MUST directly support the defined todo application outcomes: create, view,
+update status, edit details, and delete with confirmation. Features explicitly marked
+out of scope (authentication, collaboration, advanced filtering, reminders, bulk
+actions, and similar expansions) MUST NOT be added unless the requirements are
+formally amended. This protects delivery focus and keeps the product aligned with
+its learning and usability goals.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Simplicity and Single Responsibility
+Code and components MUST remain small, readable, and purpose-driven. Each module,
+function, and React component MUST have one clear responsibility, follow existing
+naming and formatting conventions, and avoid duplication through shared utilities
+when repetition appears. Simpler implementations take precedence over speculative
+abstractions unless measurable constraints justify extra complexity.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Test-First Quality Gate (NON-NEGOTIABLE)
+Behavior changes MUST be validated with automated tests that assert user-visible
+outcomes rather than implementation details. New or changed functionality MUST
+include or update unit or integration tests in colocated test directories, and the
+workspace test suites MUST pass before merge. Coverage SHOULD remain at or above
+the project target, and regressions in critical workflows are release blockers.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Immediate Persistence and Data Integrity
+Todo state changes MUST be persisted through the backend API immediately after user
+actions. The system MUST preserve key domain rules: required title, optional due
+date, incomplete-by-default creation, and creation-order list display. Destructive
+actions MUST require explicit confirmation, and failures MUST surface clear,
+actionable user feedback.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Accessible Themed UI Consistency
+The interface MUST implement the documented Halloween-themed design system with
+consistent spacing, typography, color semantics, and component behavior across light
+and dark modes. Interactive elements MUST be keyboard accessible, focus-visible,
+and meet WCAG AA contrast expectations. UX polish MUST never reduce clarity,
+discoverability, or task completion speed.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Technical Standards and Constraints
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+The approved stack is React frontend plus Express backend in the existing monorepo
+workspace layout. Changes MUST preserve npm workspace operability and existing
+package boundaries. Data persistence MUST use the current backend persistence
+mechanism, and schema changes beyond basic todo storage are disallowed unless
+explicitly approved through requirement updates.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+Code style requirements are mandatory: 2-space indentation, LF endings, minimal
+trailing whitespace, consistent import ordering, and established naming conventions
+(camelCase, PascalCase, UPPER_SNAKE_CASE where appropriate). Error handling MUST be
+graceful and user-facing where failures affect workflows.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Development Workflow and Review Gates
+
+Work MUST be delivered through focused, atomic commits on feature branches with clear
+messages describing intent and impact. Pull requests MUST include a requirement-aware
+summary and test evidence for affected packages. Before review, contributors MUST run
+relevant test suites and resolve lint issues when linting scripts are present.
+
+Reviewers MUST verify constitution compliance explicitly: scope alignment, principle
+adherence, and adequate test coverage for changed behavior. Any deviation from this
+constitution requires documented justification and a follow-up amendment proposal.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution is the highest project-level authority for engineering practices in
+this repository. In case of conflict, this document overrides ad hoc conventions and
+informal preferences.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+Amendments require: (1) a written proposal describing the change and rationale,
+(2) reviewer approval in pull request discussion, and (3) updates to affected
+documentation when principles alter implementation expectations.
+
+Versioning policy for this constitution follows semantic versioning:
+- MAJOR for incompatible governance changes or principle removals/redefinitions.
+- MINOR for new principles/sections or materially expanded guidance.
+- PATCH for clarifications, wording improvements, and non-semantic refinements.
+
+Compliance review is required for every pull request. Review outcomes MUST record
+whether the change is compliant, compliant with justified exception, or blocked.
+
+**Version**: 1.0.0 | **Ratified**: 2026-08-11 | **Last Amended**: 2026-08-11
